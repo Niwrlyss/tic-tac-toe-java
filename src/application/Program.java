@@ -9,7 +9,8 @@ public class Program {
 		Match hashMatch = new Match();
 
 		// print shapes on the match but after
-		//UI.printBoard(hashMatch.getShapes());
+		System.out.println();
+		UI.printBoard(hashMatch.getShapes());
 	}
 
 }

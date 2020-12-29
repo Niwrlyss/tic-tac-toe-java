@@ -13,8 +13,6 @@ public class UI {
 				// inside this for, print shape in i, j
 				printShape(shapes[i][j]);
 			}
-			// break line in final before first for ends
-			System.out.println();
 		}
 		// now print letters of columns
 		System.out.println("   a  b  c");
