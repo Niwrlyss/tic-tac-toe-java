@@ -1,10 +1,15 @@
 package application;
 
+import system.Match;
+
 public class Program {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// instantiate a Hash Match (class HashMatch)
+		Match hashMatch = new Match();
 
+		// print shapes on the match but after
+		//UI.printBoard(hashMatch.getShapes());
 	}
 
 }
