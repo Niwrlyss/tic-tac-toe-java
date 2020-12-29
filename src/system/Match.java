@@ -12,7 +12,7 @@ public class Match {
 	//size of game : the match(here)
 	public Match() {
 		board = new Board(3, 3);
-		initialize();
+		initialize();	
 	}
 
 	public TicTacShape[][] getShapes() {

@@ -18,17 +18,8 @@ public class Board {
 	public int getRows() {
 		return rows;
 	}
-
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
-
 	public int getColumns() {
 		return columns;
-	}
-
-	public void setColumns(int columns) {
-		this.columns = columns;
 	}
 
 	// return matrix in row/column x,x
@@ -41,12 +32,29 @@ public class Board {
 		return shapes[position.getRow()][position.getColumn()];
 	}
 
-	// to place shape I need a Shape and a Position
+	/* to place shape I need a Shape and a Position
+	before place a shape I need test if already exist shape on position
+	I need acess the matrix(shapes)by position and
+	make it receive the local shape*/
 	public void placeShape(Shape shape, Position position) {
-		// I need acess the matrix(shapes)by position and
-		// make it receive the local shape
+		if(thereIsAPiece(position)) {
+			throw new BoardException("There is already a shape on position");
+		}
 		shapes[position.getRow()][position.getColumn()] = shape;
 		// the shape is not null now, it's on this position
 		shape.position = position;
+	}
+	//position can't be > 3, 3
+	public boolean positionExists(int row,int column) {
+		return row >= 0 && row < rows && column >=0 && column <columns;
+	}
+	public boolean positionExists(Position position) {
+		return positionExists(position.getRow(), position.getColumn());
+	}
+	public boolean thereIsAPiece(Position position){
+		if(!positionExists(position)) {
+			throw new BoardException("Position not on the board");
+		}
+		return shape(position) != null;
 	}
 }
