@@ -1,17 +1,21 @@
 package system;
 
 import boardgame.Board;
+import boardgame.Position;
+import boardgame.Shape;
+import shapes.x.o.Circle;
 import shapes.x.o.Cross;
 
 public class Match {
 	// create a board because
 	// hash have a board to play
 	private Board board;
+	private int turn;
 
 	// size of game : the match(here)
 	public Match() {
 		board = new Board(3, 3);
-		initialize();
+		turn =1;
 	}
 
 	public TicTacShape[][] getShapes() {
@@ -28,12 +32,19 @@ public class Match {
 	public void placeNewShape(char column, int row, TicTacShape shape) {
 		board.placeShape(shape, new TicTacPosition(column, row).toPosition());
 	}
-
-	public void initialize() {
-		//now I don't need chose position of matrix (1..2..)
-		//I can use my own positions because conversation
-		placeNewShape('b', 3,new Cross(board, ShapeColor.GREEN));
-		placeNewShape('b', 2,new Cross(board, ShapeColor.GREEN));
-		placeNewShape('b', 1,new Cross(board, ShapeColor.GREEN));
+	//take a converted position and create a shape, X or O depending
+	//of turn on target position(chosed by user)
+	public TicTacShape placingShapes(TicTacPosition targetPosition) {
+		Position target = targetPosition.toPosition();
+		Shape s;
+		if (turn %2 == 0) {
+			s = new Circle(board, ShapeColor.BLUE);
+			turn++;
+		} else {
+			s = new Cross(board, ShapeColor.GREEN);
+			turn++;
+		}
+		board.placeShape(s, target);
+		return (TicTacShape)s;
 	}
 }
