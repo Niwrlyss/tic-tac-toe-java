@@ -1,5 +1,17 @@
 package shapes.x.o;
 
-public class Cross {
+import boardgame.Board;
+import system.TicTacShape;
+import system.ShapeColor;
 
+public class Cross extends TicTacShape{
+
+	public Cross(Board board, ShapeColor color) {
+		super(board, color);
+	}
+
+	@Override
+	public String toString() {
+		return "X";
+	}
 }
