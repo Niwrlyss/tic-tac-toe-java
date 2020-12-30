@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import system.TicTacShape;
 import system.TicTacPosition;
+import system.Match;
 import system.ShapeColor;
 
 public class UI {
@@ -16,6 +17,8 @@ public class UI {
 			public static final String GREEN_BOLD_BRIGHT = "\033[1;92m";
 			public static final String WHITE_BOLD_BRIGHT = "\033[1;97m";	
 			public static final String BLUE_BOLD_BRIGHT = "\033[1;94m";
+			public static final String YELLOW_BOLD_BRIGHT = "\033[1;93m";
+			public static final String PURPLE_BOLD_BRIGHT = "\033[1;95m";
 			
 			public static void clearScreen() {
 				System.out.print("\033[H\033[2J");
@@ -42,7 +45,7 @@ public class UI {
 		//first print number of line
 		//matrix = 0,1,3 not 3,2,1 so:
 		for(int i = 0; i<shapes.length;i++) {
-			System.out.print(WHITE_BOLD_BRIGHT+(3 - i) + ANSI_RESET+ " ");
+			System.out.print(PURPLE_BOLD_BRIGHT+(3 - i) + ANSI_RESET+ " ");
 			for(int j = 0;j<shapes.length;j++) {
 				//inside this for, print shape in i, j
 				printShape(shapes[i][j]);
@@ -51,7 +54,7 @@ public class UI {
 			System.out.println();
 		}
 		//now print letters of columns
-		System.out.println(WHITE_BOLD_BRIGHT+"   a  b  c" + ANSI_RESET);
+		System.out.println(PURPLE_BOLD_BRIGHT+"   a  b  c" + ANSI_RESET);
 	}
 	//print board first create a auxiliar
 	//method printing just 1 shape(X,O)
@@ -66,6 +69,17 @@ public class UI {
 			} else {
 				System.out.print(WHITE_BOLD_BRIGHT +"|"+BLUE_BOLD_BRIGHT + shape + ANSI_RESET+WHITE_BOLD_BRIGHT +"|");
 			}
+		}
+	}
+	
+	public static void printMatch(Match ticTacMatch) {
+		printBoard(ticTacMatch.getShapes());
+		System.out.println();
+		System.out.println(WHITE_BOLD_BRIGHT+"Turn: " + YELLOW_BOLD_BRIGHT + ticTacMatch.getTurn());
+		if (ticTacMatch.getCurrentPlayer() == ShapeColor.GREEN) {
+			System.out.println(WHITE_BOLD_BRIGHT+"Waiting player: " + GREEN_BOLD_BRIGHT+ticTacMatch.getCurrentPlayer()+ANSI_RESET);
+		} else {
+			System.out.println(WHITE_BOLD_BRIGHT+"Waiting player: " + BLUE_BOLD_BRIGHT+ticTacMatch.getCurrentPlayer()+ANSI_RESET);
 		}
 	}
 }

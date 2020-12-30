@@ -20,10 +20,10 @@ public class Program {
 				UI.clearScreen();
 				System.out.println();
 				//print shapes on the match
-				UI.printBoard(hashMatch.getShapes());
+				UI.printMatch(hashMatch);
 				System.out.println();
 				
-				System.out.print("Please chose a position: ");
+				System.out.print(UI.WHITE_BOLD_BRIGHT+"Choose a position: ");
 				TicTacPosition targetPosition = UI.readShapePosition(sc);
 				TicTacShape hs = hashMatch.placingShapes(targetPosition);
 			}

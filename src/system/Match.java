@@ -11,11 +11,20 @@ public class Match {
 	// hash have a board to play
 	private Board board;
 	private int turn;
+	private ShapeColor currentPlayer;
 
 	// size of game : the match(here)
 	public Match() {
 		board = new Board(3, 3);
-		turn =1;
+		turn = 1;
+		currentPlayer = ShapeColor.GREEN;
+	}
+	
+	public int getTurn() {
+		return turn;
+	}
+	public ShapeColor getCurrentPlayer() {
+		return currentPlayer;
 	}
 
 	public TicTacShape[][] getShapes() {
@@ -39,12 +48,20 @@ public class Match {
 		Shape s;
 		if (turn %2 == 0) {
 			s = new Circle(board, ShapeColor.BLUE);
-			turn++;
+			//remove increase turn here because it has
+			//to be in method nextTurn
 		} else {
 			s = new Cross(board, ShapeColor.GREEN);
-			turn++;
 		}
 		board.placeShape(s, target);
+		//before return shape, next turn
+		nextTurn();
 		return (TicTacShape)s;
+	}	
+	
+	private void nextTurn() {
+		turn++;
+		//if current player is green change to blue etc
+		currentPlayer = (currentPlayer == ShapeColor.GREEN) ? ShapeColor.BLUE : ShapeColor.GREEN;
 	}
 }
