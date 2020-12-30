@@ -17,6 +17,11 @@ public class UI {
 			public static final String WHITE_BOLD_BRIGHT = "\033[1;97m";	
 			public static final String BLUE_BOLD_BRIGHT = "\033[1;94m";
 			
+			public static void clearScreen() {
+				System.out.print("\033[H\033[2J");
+				System.out.flush();
+			}
+			
 			public static TicTacPosition readShapePosition(Scanner sc) {
 				try {
 					String s = sc.nextLine();
